@@ -7,7 +7,6 @@ const createShortUrl = (res, req) => {
   const shortUrl = Crypto.encoding(req.body.full);
   Url.findOneByShortUrl(shortUrl).then(findUrl => {
     if (!findUrl) {
-      console.log('shortUrl(in):', shortUrl);
       return registerShortUrl(res, shortUrl, req.body.full);
     }
     return createShortUrl(res, req);
