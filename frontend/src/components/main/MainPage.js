@@ -33,10 +33,10 @@ const MainTitle = () => {
 
   const onSubmitUrl = () => {
     setPage('resultPage');
-    if(!(inputRef.current.value).includes(CONSTANT.HTTP) || !(inputRef.current.value).includes(CONSTANT.HTTPS) ){
-      return getShortUrl(CONSTANT.HTTPS+inputRef.current.value);
+    if((inputRef.current.value).includes(CONSTANT.HTTP) || (inputRef.current.value).includes(CONSTANT.HTTPS) ){
+      return getShortUrl(inputRef.current.value);
     }
-    return getShortUrl(inputRef.current.value);
+    return getShortUrl(CONSTANT.HTTPS+inputRef.current.value);
   };
 
   const onBackPage = () => {
