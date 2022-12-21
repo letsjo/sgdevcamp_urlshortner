@@ -1,9 +1,13 @@
-import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { CONSTANT } from '../../constants/url';
 
 const ResultPage = ({ inputUrl }) => {
+
+  const { full, short } = useSelector((state) => state.urlReducer);
+
   const clipboardCopy = async () => {
-    await navigator.clipboard.writeText(inputUrl);
+    await navigator.clipboard.writeText(CONSTANT.BASE_URL+short);
     alert('url 복사 완료!');
   };
 
@@ -12,11 +16,11 @@ const ResultPage = ({ inputUrl }) => {
       <Title>Title</Title>
       <ResultBox>
         <BoxTitle>Original URL</BoxTitle>
-        <OriginalBox value={inputUrl} readOnly={true}></OriginalBox>
+        <OriginalBox value={full} readOnly={true}></OriginalBox>
 
         <BoxTitle>Shorten URL</BoxTitle>
         <ShortenContainer>
-          <ShortenBox value={inputUrl} readOnly={true}></ShortenBox>
+          <ShortenBox value={CONSTANT.BASE_URL+short} readOnly={true}></ShortenBox>
           <CopyButton onClick={clipboardCopy}>COPY</CopyButton>
         </ShortenContainer>
       </ResultBox>

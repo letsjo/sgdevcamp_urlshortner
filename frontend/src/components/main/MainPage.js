@@ -1,15 +1,31 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+
+import { urlAction } from '../../redux/actions/urlAction';
+import { urlSliceAction } from '../../redux/reducers/urlReducer';
 
 const MainTitle = ({ setInputUrl }) => {
   const inputRef = useRef();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onSubmitUrl = () => {
     setInputUrl(inputRef.current.value);
-    console.log(inputRef.current.value);
-    navigate('/result');
+    getShortUrl(inputRef.current.value);
+  };
+
+  const getShortUrl = async (full) => {
+    try {
+      const response = await dispatch(urlAction.getShortUrl({full})).unwrap();
+      await dispatch(urlSliceAction.setUrl(response.data))
+      navigate('/result');
+      return response;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
   };
   
   return (
