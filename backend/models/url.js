@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// define Schema
 const urlSchema = new mongoose.Schema(
   {
     full: { type: String, require: true },
@@ -23,8 +24,8 @@ urlSchema.statics.findAll = function () {
 };
 
 // Find One by url id
-urlSchema.statics.findOneByUrlId = function (urlId) {
-  return this.findOne({ urlId });
+urlSchema.statics.findOneByShortUrl = function (short) {
+  return this.findOne({ short });
 };
 
 // Update by url id
@@ -33,8 +34,8 @@ urlSchema.statics.updateByUrlId = function (urlId, payload) {
 };
 
 // Delete by url id
-urlSchema.statics.deleteByUrlId = function (urlId) {
-  return this.remove({ urlId });
+urlSchema.statics.deleteByUrlId = function (short) {
+  return this.remove({ short });
 };
 
 module.exports = mongoose.model('Url', urlSchema);
