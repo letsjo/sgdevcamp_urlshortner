@@ -11,7 +11,6 @@ function App() {
 
   return (
     <Container>
-
       <Routes>
         <Route path="/" element={<MainPage setInputUrl={setInputUrl} />} />
         <Route path="/result" element={<ResultPage inputUrl={inputUrl} />} />
