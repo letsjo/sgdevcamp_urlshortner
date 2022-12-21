@@ -15,12 +15,13 @@ mongoose.connect('mongodb+srv://gusdh2:1q2w3e4r!!@cluster0.hrpfadx.mongodb.net/?
 
 // Static File Service
 app.use(express.static('public'));
+
 // Body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // ROUTERS
-app.use('/urls', require('./routes/urls'));
+app.use('/', require('./routes/urls'));
 
 app.use(express.json());
 const cors = require('cors');
